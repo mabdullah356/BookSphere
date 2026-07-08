@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { FaBookOpen, FaBars, FaTimes, FaUser, FaShoppingCart } from "react-icons/fa"
-import { useAuth } from "../Contexts/AuthContext"
+import { FaBookOpen, FaBars, FaTimes, FaShoppingCart } from "react-icons/fa"
 import { useCart } from "../Contexts/CartContext"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 
 const links = [
@@ -14,19 +13,7 @@ const links = [
 
 export default function Header() {
     const [open, setOpen] = useState(false)
-    const { user, logout } = useAuth()
     const { cartCount } = useCart()
-    const navigate = useNavigate()
-
-    const handleLogout = async () => {
-        try {
-            await logout()
-            setOpen(false)
-            navigate("/")
-        } catch (error) {
-            console.error("Logout error:", error)
-        }
-    }
 
     return (
         <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
@@ -57,26 +44,6 @@ export default function Header() {
                         )}
                     </div>
 
-                    {user ? (
-                        <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-full px-4 py-1.5">
-                                <FaUser size={12} className="text-gray-400" />
-                                <span className="text-xs font-bold text-gray-700">{user.email.split('@')[0]}</span>
-                            </div>
-                            <button onClick={handleLogout} className="text-sm font-bold text-gray-500 hover:text-red-600 transition-colors">
-                                Logout
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="flex items-center gap-3">
-                            <Link to="/login" className="text-sm font-bold text-gray-600 hover:text-brand-600 px-4 py-2">
-                                Login
-                            </Link>
-                            <Link to="/signup" className="bg-brand-600 text-white text-sm font-bold px-6 py-2.5 rounded-full hover:bg-brand-700 transition-colors shadow-lg shadow-brand-100">
-                                Join
-                            </Link>
-                        </div>
-                    )}
                 </div>
 
                 <div className="flex items-center gap-4 md:hidden">
@@ -120,22 +87,7 @@ export default function Header() {
                             ))}
                         </ul>
 
-                        <div className="pt-8 border-t border-gray-100 space-y-4">
-                            {user ? (
-                                <>
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <div className="bg-gray-100 p-3 rounded-full"><FaUser className="text-gray-400" /></div>
-                                        <span className="font-bold text-gray-900">{user.email}</span>
-                                    </div>
-                                    <button onClick={handleLogout} className="w-full bg-gray-900 text-white font-bold py-4 rounded-2xl">Logout</button>
-                                </>
-                            ) : (
-                                <>
-                                    <Link to="/login" onClick={() => setOpen(false)} className="w-full bg-gray-50 text-gray-900 text-center font-bold py-4 rounded-2xl block">Login</Link>
-                                    <Link to="/signup" onClick={() => setOpen(false)} className="w-full bg-brand-600 text-white text-center font-bold py-4 rounded-2xl block shadow-lg shadow-brand-100">Sign Up</Link>
-                                </>
-                            )}
-                        </div>
+                        <div className="pt-8 border-t border-gray-100"></div>
                     </motion.div>
                 )}
             </AnimatePresence>
