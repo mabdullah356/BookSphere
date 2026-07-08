@@ -6,8 +6,6 @@ import BooksPage from './Components/Pages/Books'
 import BookDetailsPage from './Components/Pages/BookDetails'
 import ContactPage from './Components/Pages/ContactUs'
 import ShopPage from './Components/Pages/Shop'
-import Login from './Components/Pages/Login'
-import SignUp from './Components/Pages/SignUp'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -21,8 +19,6 @@ const App = () => {
                     <Route path="/books/:id" element={<BookDetailsPage />} />
                     <Route path="/shop" element={<ShopPage />} />
                     <Route path="/contact" element={<ContactPage />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<SignUp />} />
                 </Routes>
                 <Footer />
             </Router>
