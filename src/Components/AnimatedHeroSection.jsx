@@ -78,6 +78,8 @@ export default function AnimatedHeroSection() {
   const coverRef = useRef(null)
   const hoverT = useRef(null)
   const glide = useRef(null)
+  const scrub = useRef(null)
+  const scrubTo = useRef(0)
   const polled = useRef(new Set())
   const reduced = useRef(false)
   mRef.current = m
@@ -114,6 +116,7 @@ export default function AnimatedHeroSection() {
     const cur = wrap(Math.round(state.pos))
     let d = wrap(idx - cur)
     if (d > 6) d -= 12
+    scrub.current = null
     if (glide.current) glide.current.kill()
     glide.current = gsap.to(state, { pos: Math.round(state.pos) + d, duration: reduced.current ? 0 : Math.min(1.1, Math.max(0.6, 0.55 + 0.08 * Math.abs(d))), ease: 'expo.out', overwrite: true, onUpdate: layout })
   }, [state, layout])
@@ -268,7 +271,15 @@ export default function AnimatedHeroSection() {
         })}
       </nav>
 
-      <div ref={trackRef} style={{ position: 'absolute', left: 0, right: 0, top: '55%', height: 0, perspective: 1400 }}>
+      <div ref={trackRef} onMouseMove={e => {
+        if (view !== 'shelf') return
+        if (scrub.current == null) { scrub.current = e.clientX; scrubTo.current = state.pos; return }
+        const dx = e.clientX - scrub.current
+        scrub.current = e.clientX
+        if (!dx) return
+        scrubTo.current -= dx / (mRef.current.S + mRef.current.E)
+        glide.current = gsap.to(state, { pos: scrubTo.current, duration: reduced.current ? 0 : 0.4, ease: 'power3.out', overwrite: true, onUpdate: layout })
+      }} onMouseLeave={() => { scrub.current = null }} style={{ position: 'absolute', left: 0, right: 0, top: '55%', height: 0, perspective: 1400 }}>
         {Array.from({ length: 36 }, (_, j) => {
           const f = FILMS[j % 12]
           const t = TON[f.tone]
