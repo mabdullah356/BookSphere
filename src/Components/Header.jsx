@@ -85,10 +85,6 @@ export default function Header() {
     })
 
     useEffect(() => {
-        setOpen(false)
-    }, [pathname])
-
-    useEffect(() => {
         const query = matchMedia("(min-width: 768px)")
         const onChange = event => event.matches && setOpen(false)
         query.addEventListener("change", onChange)
@@ -104,6 +100,7 @@ export default function Header() {
         document.body.style.overflow = "hidden"
         if (gap > 0) document.body.style.paddingRight = `${gap}px`
         closeRef.current?.focus()
+        const closeOnNavigate = () => setOpen(false)
         const onKey = event => {
             if (event.key === "Escape") {
                 setOpen(false)
@@ -123,10 +120,12 @@ export default function Header() {
             }
         }
         window.addEventListener("keydown", onKey)
+        window.addEventListener("popstate", closeOnNavigate)
         return () => {
             document.body.style.overflow = overflow
             document.body.style.paddingRight = padding
             window.removeEventListener("keydown", onKey)
+            window.removeEventListener("popstate", closeOnNavigate)
             if (previous instanceof HTMLElement && document.contains(previous)) previous.focus()
         }
     }, [open])
