@@ -51,14 +51,11 @@ export default function HeroSection() {
                         transition={{ duration: 0.8 }}
                         className="relative z-10"
                     >
-                        <div className="w-full aspect-square bg-brand-600 rounded-[3rem] overflow-hidden flex items-center justify-center p-12">
-                            <FaBookOpen className="text-white text-[10rem] opacity-20 absolute" />
+                        <div className="p-12">
                             <ClothImage index={0} />
                         </div>
                     </motion.div>
-                    
-                    <div className="absolute -top-6 -right-6 w-32 h-32 bg-brand-50 rounded-full blur-3xl opacity-50" />
-                    <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-brand-100 rounded-full blur-3xl opacity-50" />
+                   
                 </div>
             </div>
         </section>
