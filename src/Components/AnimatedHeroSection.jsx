@@ -710,10 +710,10 @@ export default function AnimatedHeroSection() {
               whiteSpace: "nowrap",
             }}
           >
-            LEON VASARI
+            Muhammad Abdullah
           </div>
           <div style={{ ...MICRO, fontSize: 8 * m.k, marginTop: 2 * m.k }}>
-            LEON VASARI
+            Muhammad Abdullah
           </div>
         </div>
         <div
@@ -963,7 +963,7 @@ export default function AnimatedHeroSection() {
                     color: PAPER,
                   }}
                 >
-                  A LEON VASARI FILM
+                  A Abdullah FILM
                 </span>
                 <span
                   style={{
@@ -1077,7 +1077,7 @@ export default function AnimatedHeroSection() {
           color: GREY,
         }}
       >
-        © LEON VASARI · ALL RIGHTS RESERVED
+        © Muhammad Abdullah · ALL RIGHTS RESERVED
       </div>
       <div
         style={{
@@ -1172,7 +1172,7 @@ export default function AnimatedHeroSection() {
                   marginTop: 16 * m.k,
                 }}
               >
-                Written and directed by Leon Vasari
+                Written and directed by {d.director}. Cinematography by {d.cinematography}. Music by {d.music}.
               </motion.div>
               <motion.button
                 variants={fade}
@@ -1250,7 +1250,7 @@ export default function AnimatedHeroSection() {
                   color: PAPER,
                 }}
               >
-                A LEON VASARI FILM
+                A Abdullah FILM
               </span>
               <span
                 style={{
