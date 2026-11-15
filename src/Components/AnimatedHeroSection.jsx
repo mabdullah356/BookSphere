@@ -470,9 +470,9 @@ export default function AnimatedHeroSection() {
       );
       setM({
         k,
-        TH: mob ? innerHeight * 0.52 : 360 * k,
-        S: mob ? 34 : 56 * k,
-        E: mob ? 110 : 170 * k,
+        TH: mob ? Math.round(innerHeight * 0.4) : 360 * k,
+        S: mob ? 30 : 56 * k,
+        E: mob ? 90 : 170 * k,
         mob,
       });
     };
@@ -684,7 +684,8 @@ export default function AnimatedHeroSection() {
   );
   const d = FILMS[openId];
   const words = d.title.split(" ");
-  const capTop = `calc(55% + ${m.TH / 2 + 28 * m.k}px)`;
+  const shelfTop = m.mob ? "47%" : "55%";
+  const capTop = `calc(${shelfTop} + ${m.TH / 2 + 28 * m.k}px)`;
   const stg = {
     show: { transition: { delayChildren: 0.6, staggerChildren: 0.09 } },
   };
@@ -780,7 +781,7 @@ export default function AnimatedHeroSection() {
       <nav
         style={{
           position: "absolute",
-          top: "22%",
+          top: m.mob ? "18%" : "22%",
           left: 0,
           right: 0,
           display: "flex",
@@ -859,7 +860,7 @@ export default function AnimatedHeroSection() {
           position: "absolute",
           left: 0,
           right: 0,
-          top: "55%",
+          top: shelfTop,
           height: 0,
           perspective: 1400,
         }}
