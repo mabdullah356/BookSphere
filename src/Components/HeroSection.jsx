@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 
 import AnimatedHeroSection from "./AnimatedHeroSection"
+import ClothImage from "./ClothImage"
 
 export default function HeroSection() {
     return (
@@ -52,11 +53,7 @@ export default function HeroSection() {
                     >
                         <div className="w-full aspect-square bg-brand-600 rounded-[3rem] overflow-hidden flex items-center justify-center p-12">
                             <FaBookOpen className="text-white text-[10rem] opacity-20 absolute" />
-                            <img 
-                                src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=2074&auto=format&fit=crop" 
-                                alt="Books"
-                                className="w-full h-full object-cover rounded-2xl shadow-2xl rotate-3"
-                            />
+                            <ClothImage index={0} />
                         </div>
                     </motion.div>
                     
