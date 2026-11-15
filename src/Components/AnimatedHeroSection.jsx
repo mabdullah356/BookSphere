@@ -34,6 +34,10 @@ const FILMS = [
     desc: "A schoolteacher returns to the mountain village that exiled her father, and finds the valley has kept every one of its secrets.",
     q: ["mountain valley river engraving", "alpine landscape etching"],
     seed: "silent-valley",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "blue",
@@ -47,6 +51,10 @@ const FILMS = [
     desc: "A night-shift nurse meets a stranger at the hour when the city forgets its own name.",
     q: ["woman profile woodblock print", "moonlit portrait print"],
     seed: "blue-hour",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "salt",
@@ -60,6 +68,10 @@ const FILMS = [
     desc: "A salt trader and his daughter drift downriver while a patient drought erases the towns behind them.",
     q: ["sunset river woodblock print", "red sun landscape print"],
     seed: "river-salt",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "summer",
@@ -73,6 +85,10 @@ const FILMS = [
     desc: "Two siblings spend one final harvest on their family farm before the land is sold.",
     q: ["summer field woodcut", "harvest figure print"],
     seed: "last-summer",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "green",
@@ -86,6 +102,10 @@ const FILMS = [
     desc: "A widowed postman walks a forest route where every letter is addressed to someone already gone.",
     q: ["forest road woodcut", "country lane print"],
     seed: "green-road",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "noon",
@@ -99,6 +119,10 @@ const FILMS = [
     desc: "A rider crosses the desert carrying a message no town is willing to read.",
     q: ["horseman desert linocut", "rider landscape print"],
     seed: "noon-ashes",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "observer",
@@ -112,6 +136,10 @@ const FILMS = [
     desc: "A portrait photographer begins to see the same stranger in every frame she develops.",
     q: ["portrait woman etching", "face engraving"],
     seed: "observer",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "birds",
@@ -125,6 +153,10 @@ const FILMS = [
     desc: "After the war, a village waits for the birds to return and for its sons to follow.",
     q: ["birds in flight woodblock print", "bird woodcut"],
     seed: "fallen-birds",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "storm",
@@ -138,6 +170,10 @@ const FILMS = [
     desc: "A lighthouse keeper counts the ships that pass and the one that never arrives.",
     q: ["lighthouse storm print", "lighthouse woodcut"],
     seed: "light-storm",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "tide",
@@ -151,6 +187,10 @@ const FILMS = [
     desc: "An island fisherman rows out each dawn to meet a sea that keeps changing its mind.",
     q: ["moon over sea woodblock print", "ocean waves print"],
     seed: "long-tide",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "war",
@@ -164,6 +204,10 @@ const FILMS = [
     desc: "A soldier returns to a silent border town where no one admits the fighting ended.",
     q: ["soldier portrait engraving", "war etching"],
     seed: "quiet-war",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
   {
     id: "door",
@@ -177,6 +221,10 @@ const FILMS = [
     desc: "A detective follows a single red door through a city that insists it does not exist.",
     q: ["red door architecture print", "doorway interior print"],
     seed: "red-door",
+    writer: "Haruki Murakami",
+    director: "Kazuo Ishiguro",
+    music: "Ryuichi Sakamoto",
+    cinematography: "Christopher Doyle",
   },
 ];
 const TABS = [
@@ -1172,7 +1220,7 @@ export default function AnimatedHeroSection() {
                   marginTop: 16 * m.k,
                 }}
               >
-                Written and directed by {d.director}. Cinematography by {d.cinematography}. Music by {d.music}.
+                Written by {d.writer} and directed by {d.director}. Cinematography by {d.cinematography}. Music by {d.music}.
               </motion.div>
               <motion.button
                 variants={fade}
