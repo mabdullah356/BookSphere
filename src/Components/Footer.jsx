@@ -1,127 +1,77 @@
-import { FaBookOpen, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaClock, FaAppStore, FaGooglePlay } from "react-icons/fa"
+import { FaArrowRight, FaHeart } from "react-icons/fa"
+import { motion, useReducedMotion } from "framer-motion"
 
-const links = {
-    "Quick Links": ["Home", "Books", "My Borrows", "Contact Us", "About Us", "Blog"],
-    "Categories": ["Fiction", "Science", "History", "Technology", "Biography", "Philosophy", "Children", "Comics"],
-    "Support": ["FAQs", "Help Center", "Privacy Policy", "Terms of Service", "Cookie Policy", "Refund Policy"],
-    "Account": ["Login", "Sign Up", "My Profile", "My Reviews", "Wishlist", "Reading History"],
-}
-
-const socials = [
-    { icon: FaFacebookF, label: "Facebook" },
-    { icon: FaTwitter, label: "Twitter" },
-    { icon: FaInstagram, label: "Instagram" },
-    { icon: FaLinkedinIn, label: "LinkedIn" },
-    { icon: FaYoutube, label: "YouTube" },
-]
-
-const contact = [
-    { icon: FaEnvelope, text: "support@booksphere.com" },
-    { icon: FaPhoneAlt, text: "+1 (800) 123-4567" },
-    { icon: FaMapMarkerAlt, text: "123 Library St, New York, NY 10001" },
-    { icon: FaClock, text: "Mon – Sat: 9:00 AM – 8:00 PM" },
-]
-
-const stats = [
-    { num: "50,000+", label: "Books Available" },
-    { num: "120,000+", label: "Active Members" },
-    { num: "200+", label: "Categories" },
-    { num: "4.9★", label: "User Rating" },
-]
-
-const legal = ["Privacy Policy", "Terms of Service", "Cookie Policy", "Accessibility", "Sitemap"]
+const MotionDiv = motion.div
+const MotionImage = motion.img
+const MotionLink = motion.a
 
 export default function Footer() {
+    const reduceMotion = useReducedMotion()
+
     return (
-        <footer className="bg-white border-t-2 border-gray-300">
-
-            <div className="border-b border-gray-300">
-                <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {stats.map(s => (
-                        <div key={s.label} className="text-center">
-                            <p className="text-black font-bold text-2xl">{s.num}</p>
-                            <p className="text-black text-sm mt-1">{s.label}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            <div className="max-w-6xl mx-auto px-6 py-14">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-
-                    <div className="lg:col-span-2">
-                        <a href="/" className="flex items-center gap-2 text-black font-bold text-2xl mb-4">
-                            <FaBookOpen size={26} />
-                            BookSphere
-                        </a>
-                        <p className="text-black text-sm leading-relaxed max-w-xs mb-5">
-                            Your digital library companion. Borrow, explore, and manage thousands of books from anywhere, anytime.
-                        </p>
-                        <div className="flex gap-3 mb-6">
-                            {socials.map(({ icon: Icon, label }) => (
-                                <a key={label} href="#" aria-label={label} className="border-2 border-gray-300 text-black p-2 rounded-full">
-                                    <Icon size={13} />
-                                </a>
-                            ))}
-                        </div>
-                        <p className="text-black text-sm font-bold mb-3">Get the app</p>
-                        <div className="flex flex-col gap-2">
-                            {[{ icon: FaAppStore, text: "Download on App Store" }, { icon: FaGooglePlay, text: "Get it on Google Play" }].map(({ icon: Icon, text }) => (
-                                <a key={text} href="#" className="flex items-center gap-2 border-2 border-gray-300 rounded-full px-4 py-2 text-sm font-semibold text-black">
-                                    <Icon size={14} />
-                                    {text}
-                                </a>
-                            ))}
+        <footer className="relative overflow-hidden border-t border-[#17100E]/10 bg-[#17100E] text-[#F6EFDF]">
+            <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:radial-gradient(rgba(255,255,255,.7)_0.5px,transparent_0.7px)] [background-size:4px_4px]" />
+            <MotionDiv
+                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                className="relative mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-12"
+            >
+                <div className="flex flex-col gap-8 border-b border-[#F6EFDF]/15 pb-8 md:flex-row md:items-center md:justify-between">
+                    <div className="flex items-center gap-5">
+                        <MotionImage
+                            src="/abdullah.jpg"
+                            alt="Muhammad Abdullah"
+                            className="h-20 w-20 rounded-full border border-[#A7545F]/70 object-cover object-[center_25%] shadow-lg shadow-black/20"
+                            whileHover={reduceMotion ? undefined : { scale: 1.05, rotate: 2 }}
+                            transition={{ duration: 0.3 }}
+                        />
+                        <div>
+                            <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#E9A9A1]">
+                                A note from the developer
+                            </p>
+                            <h2 className="font-serif text-2xl tracking-tight md:text-3xl">
+                                Muhammad Abdullah
+                            </h2>
+                            <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#F6EFDF]/70">
+                                I create playful, animated websites with thoughtful details and smooth interactions.
+                            </p>
                         </div>
                     </div>
 
-                    {Object.entries(links).map(([title, items]) => (
-                        <div key={title}>
-                            <h3 className="text-black font-bold text-sm mb-4 border-b border-gray-300 pb-2">{title}</h3>
-                            <ul className="flex flex-col gap-3">
-                                {items.map(item => (
-                                    <li key={item}>
-                                        <a href="#" className="text-black text-sm">{item}</a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="border-t-2 border-b border-gray-300 mt-12 pt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 className="text-black font-bold text-sm mb-4">Contact us</h3>
-                        <div className="flex flex-col gap-3">
-                            {contact.map(({ icon: Icon, text }) => (
-                                <div key={text} className="flex items-center gap-3 text-sm text-black">
-                                    <Icon size={14} />
-                                    <span>{text}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 className="text-black font-bold text-sm mb-4">Subscribe to our newsletter</h3>
-                        <p className="text-black text-sm mb-4">Get weekly updates on new arrivals, reading tips, and exclusive offers.</p>
-                        <div className="flex border-2 border-gray-300 rounded-full overflow-hidden mb-3">
-                            <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-2 text-sm text-black outline-none bg-white" />
-                            <button className="bg-black text-white text-sm font-semibold px-5 py-2">Subscribe</button>
-                        </div>
-                        <p className="text-black text-xs">By subscribing you agree to our Privacy Policy. No spam, ever.</p>
+                    <div className="flex flex-wrap gap-3 md:justify-end">
+                        <MotionLink
+                            href="mailto:abdullahworld111@gmail.com"
+                            className="inline-flex items-center gap-2 rounded-full border border-[#F6EFDF]/25 px-5 py-3 text-xs font-semibold tracking-wide transition hover:border-[#E9A9A1] hover:text-[#E9A9A1]"
+                            whileHover={reduceMotion ? undefined : { y: -3 }}
+                            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                        >
+                            abdullahworld111@gmail.com
+                            <FaArrowRight aria-hidden="true" size={11} />
+                        </MotionLink>
+                        <MotionLink
+                            href="https://muhammad-abdullah-me.vercel.app/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full bg-[#F6EFDF] px-5 py-3 text-xs font-semibold tracking-wide text-[#17100E] transition hover:bg-[#E9A9A1]"
+                            whileHover={reduceMotion ? undefined : { y: -3 }}
+                            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                        >
+                            Visit my portfolio
+                            <FaArrowRight aria-hidden="true" size={11} />
+                        </MotionLink>
                     </div>
                 </div>
 
-                <div className="border-t border-b border-gray-300 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="text-black text-sm">© 2026 BookSphere. All rights reserved. Made with love for readers.</p>
-                    <div className="flex flex-wrap gap-4 justify-center">
-                        {legal.map(item => (
-                            <a key={item} href="#" className="text-black text-xs">{item}</a>
-                        ))}
-                    </div>
+                <div className="flex flex-col gap-3 pt-5 text-xs text-[#F6EFDF]/55 sm:flex-row sm:items-center sm:justify-between">
+                    <p>Made with curiosity, tiny details, and a soft spot for good stories.</p>
+                    <p className="inline-flex items-center gap-1.5">
+                        © {new Date().getFullYear()} BookSphere · Built with
+                        <FaHeart aria-label="love" className="text-[#E9A9A1]" size={10} />
+                    </p>
                 </div>
-            </div>
+            </MotionDiv>
         </footer>
     )
 }
