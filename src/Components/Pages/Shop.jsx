@@ -211,7 +211,7 @@ function FilterBar({
       initial={{ opacity: 0, y: -14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-[#17100E]/95 backdrop-blur-md border-b border-white/10 py-5 sticky top-[72px] z-40"
+      className="bg-[#17100E]/95 backdrop-blur-md border-b border-white/10 py-5"
     >
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-5">
         <div className="flex flex-wrap gap-2">
