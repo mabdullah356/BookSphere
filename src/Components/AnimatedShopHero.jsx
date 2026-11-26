@@ -1384,6 +1384,7 @@ const STYLE_C = `
 export default function AnimatedShopHero({
   items = [],
   onBrowse,
+  onAdd,
   autoFetch = true,
 }) {
   const rootRef = useRef(null);
@@ -1543,11 +1544,12 @@ export default function AnimatedShopHero({
 
   const handleAdd = useCallback(() => {
     if (!openProduct) return;
+    if (typeof onAdd === "function") onAdd(openProduct, size);
     if (typeof addToCart === "function") addToCart(openProduct, size);
     setAdded(true);
     window.clearTimeout(addedTimer.current);
     addedTimer.current = window.setTimeout(() => setAdded(false), 1800);
-  }, [addToCart, openProduct, size]);
+  }, [addToCart, onAdd, openProduct, size]);
 
   const trackCursor = useCallback((event) => {
     const ring = cursorRef.current;

@@ -21,6 +21,51 @@ const COLLECTIONS = [
 ]
 const CACHE_KEY = 'bs-shop-products-v4'
 const CACHE_TTL = 20 * 60 * 1000
+const CART_STORAGE_KEY = 'booksphere.shop.cart.v1'
+
+const saveCartProduct = (product, size) => {
+  if (!product) return
+  try {
+    const raw = window.localStorage.getItem(CART_STORAGE_KEY)
+    const parsed = raw ? JSON.parse(raw) : []
+    const items = Array.isArray(parsed) ? parsed : []
+    const id = String(product.id || product.handle || product.name || product.title || '')
+    if (!id) return
+    const selectedSize = String(
+      size || product.selectedSize || product.size ||
+        (Array.isArray(product.sizes) ? product.sizes[0] : '') || 'One size',
+    )
+    const key = `${id}::${selectedSize}`
+    const index = items.findIndex(item => item && item.key === key)
+    const price = Number(product.price) || 0
+    const compareAt = Number(product.compareAt) || price
+
+    if (index >= 0) {
+      items[index] = {
+        ...items[index],
+        quantity: Math.min((Number(items[index].quantity) || 1) + 1, 99),
+      }
+    } else {
+      items.push({
+        key,
+        id,
+        name: String(product.name || product.title || 'Untitled product'),
+        type: String(product.type || 'Product'),
+        size: selectedSize,
+        price,
+        compareAt,
+        image: String(product.image || (Array.isArray(product.images) ? product.images[0] : '') || ''),
+        description: String(product.desc || product.description || ''),
+        quantity: 1,
+        addedAt: Date.now(),
+      })
+    }
+
+    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items))
+  } catch {
+    return undefined
+  }
+}
 
 const DESCRIPTIONS = {
   Sweatshirts:
@@ -411,7 +456,10 @@ function ProductGrid({
                 <ClothCard
                   key={product.id}
                   product={product}
-                  onAdd={addToCart}
+                  onAdd={() => {
+                    saveCartProduct(product)
+                    addToCart()
+                  }}
                 />
               ))}
             </AnimatePresence>
@@ -474,6 +522,7 @@ export default function Shop() {
         items={products}
         onBrowse={browse}
         autoFetch={false}
+        onAdd={saveCartProduct}
       />
       <FilterBar
         activeCategory={activeCategory}

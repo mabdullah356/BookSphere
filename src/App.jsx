@@ -6,6 +6,7 @@ import BooksPage from './Components/Pages/Books'
 import BookDetailsPage from './Components/Pages/BookDetails'
 import ContactPage from './Components/Pages/ContactUs'
 import ShopPage from './Components/Pages/Shop'
+import CartPage from './Components/Pages/Cart'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
                     <Route path="/books" element={<BooksPage />} />
                     <Route path="/books/:id" element={<BookDetailsPage />} />
                     <Route path="/shop" element={<ShopPage />} />
+                    <Route path="/cart" element={<CartPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                 </Routes>
                 <Footer />

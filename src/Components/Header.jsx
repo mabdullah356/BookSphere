@@ -38,24 +38,24 @@ function Cart({ count, reduce }) {
             whileHover={reduce ? undefined : { y: -2 }}
             transition={spring}
             role="img"
-            aria-label={`Shopping cart, ${count} ${count === 1 ? "item" : "items"}`}
+                aria-label={`Shopping cart, ${count} ${count === 1 ? "item" : "items"}`}
             className="relative text-gray-600 transition-colors hover:text-brand-600"
-        >
-            <FaShoppingCart size={20} aria-hidden="true" />
-            <AnimatePresence>
-                {count > 0 && (
-                    <motion.span
-                        key={count}
-                        initial={reduce ? false : { scale: 0.3, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={reduce ? undefined : { scale: 0.3, opacity: 0 }}
-                        transition={spring}
-                        className="absolute -right-2.5 -top-2.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand-600 px-1 text-[10px] font-bold text-white"
-                    >
-                        {count}
-                    </motion.span>
-                )}
-            </AnimatePresence>
+            >
+                <FaShoppingCart size={20} aria-hidden="true" />
+                <AnimatePresence>
+                    {count > 0 && (
+                        <motion.span
+                            key={count}
+                            initial={reduce ? false : { scale: 0.3, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={reduce ? undefined : { scale: 0.3, opacity: 0 }}
+                            transition={spring}
+                            className="absolute -right-2.5 -top-2.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand-600 px-1 text-[10px] font-bold text-white"
+                        >
+                            {count}
+                        </motion.span>
+                    )}
+                </AnimatePresence>
         </motion.div>
     )
 }
@@ -167,11 +167,11 @@ export default function Header() {
                     </ul>
 
                     <div className="hidden items-center gap-1 md:flex">
-                        <Cart count={cartCount} reduce={reduce} />
+                        <Cart count={cartCount} reduce={reduce} active={active("/cart")} />
                     </div>
 
                     <div className="flex items-center gap-3 md:hidden">
-                        <Cart count={cartCount} reduce={reduce} />
+                        <Cart count={cartCount} reduce={reduce} active={active("/cart")} onClick={() => setOpen(false)} />
                         <motion.button
                             ref={toggleRef}
                             type="button"
