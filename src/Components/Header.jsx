@@ -32,14 +32,18 @@ function Logo({ reduce, onClick }) {
     )
 }
 
-function Cart({ count, reduce }) {
+function Cart({ count, reduce, active, onClick }) {
     return (
-        <motion.div
-            whileHover={reduce ? undefined : { y: -2 }}
-            transition={spring}
-            role="img"
-                aria-label={`Shopping cart, ${count} ${count === 1 ? "item" : "items"}`}
-            className="relative text-gray-600 transition-colors hover:text-brand-600"
+        <Link
+            to="/cart"
+            onClick={onClick}
+            aria-label={`Shopping cart, ${count} ${count === 1 ? "item" : "items"}`}
+            className={`relative grid h-10 w-10 place-items-center rounded-full transition-colors ${focusRing} ${active ? "bg-brand-50 text-brand-600" : "text-gray-600 hover:bg-gray-100 hover:text-brand-600"}`}
+        >
+            <motion.span
+                whileHover={reduce ? undefined : { y: -2 }}
+                transition={spring}
+                className="grid place-items-center"
             >
                 <FaShoppingCart size={20} aria-hidden="true" />
                 <AnimatePresence>
@@ -56,7 +60,8 @@ function Cart({ count, reduce }) {
                         </motion.span>
                     )}
                 </AnimatePresence>
-        </motion.div>
+            </motion.span>
+        </Link>
     )
 }
 

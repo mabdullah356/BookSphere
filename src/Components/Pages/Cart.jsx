@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion as Motion, useReducedMotion } from 'framer-motion'
 import { FaArrowLeft, FaCheckCircle, FaMinus, FaPlus, FaShoppingBag, FaTrash } from 'react-icons/fa'
+import { useCart } from '../../Contexts/CartContext'
 
 const CART_STORAGE_KEY = 'booksphere.shop.cart.v1'
 const SHIPPING_THRESHOLD = 75
@@ -152,6 +153,7 @@ function ProductRow({ item, reduce, onChangeQuantity, onRemove }) {
 
 export default function CartPage() {
   const reduce = useReducedMotion()
+  const { setCartCount } = useCart()
   const [items, setItems] = useState(() => readStoredCart())
   const [orderState, setOrderState] = useState('idle')
   const orderTimer = useRef(null)
@@ -174,16 +176,24 @@ export default function CartPage() {
 
   const itemCount = items.reduce((total, item) => total + item.quantity, 0)
 
+  const syncCartCount = (nextItems) => {
+    setCartCount(nextItems.reduce((total, item) => total + item.quantity, 0))
+  }
+
   const changeQuantity = (key, delta) => {
-    setItems((current) => current
+    const next = items
       .map((item) => item.key === key
         ? { ...item, quantity: Math.min(Math.max(item.quantity + delta, 0), 99) }
         : item)
-      .filter((item) => item.quantity > 0))
+      .filter((item) => item.quantity > 0)
+    setItems(next)
+    syncCartCount(next)
   }
 
   const removeItem = (key) => {
-    setItems((current) => current.filter((item) => item.key !== key))
+    const next = items.filter((item) => item.key !== key)
+    setItems(next)
+    syncCartCount(next)
   }
 
   const completeOrder = () => {
@@ -196,6 +206,7 @@ export default function CartPage() {
         return undefined
       }
       setItems([])
+      setCartCount(0)
       setOrderState('complete')
     }, reduce ? 400 : 1800)
   }
